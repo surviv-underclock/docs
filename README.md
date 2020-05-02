@@ -1,15 +1,15 @@
 # surviv.io Timers
 
 ## Table of Contents
-* [Instructions](#instructions)
-* [Notation](#notation)
-* [Timers](#timers)
-* [Glossary](#glossary)
-* [Videos](#videos)
-* [No Overclock](#no-overclock)
+* [Instructions](#instructions) (how to underclock + advanced instructions requiring more math)
+* [Notation](#notation) (how to understand [#instructions](#instructions))
+* [Timers](#timers) (why underclock works)
+* [Glossary](#glossary) (some useful keywords)
+* [Videos](#videos) (watch [#instructions](#instructions) in action)
+* [No Overclock](#no-overclock) ("There is no overclock!")
 
 Extras
-* [Data Tables](data-tables.md)
+* [Data Tables](data-tables.md) (switch delays and deploy groups of all weapons)
 
 ## Instructions
 ### Experimental
