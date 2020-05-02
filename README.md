@@ -212,5 +212,6 @@ It's very ironic that underclocking is actually a method to ***delay*** shots, y
 Justin and Nick clearly designed the timer system the way they did just to troll very hard against those who are less competent at basic math (without regard to their more advanced math skills).
 
 **There is no overclock.**
-
-![There is no overclock.](no-overclock.png "There is no overclock.")
+<p align="center">
+  <img src="no-overclock.png" title="There is no overclock." alt="There is no overclock.">
+</p>
