@@ -13,46 +13,49 @@ Extras
 
 ## Instructions
 ### Experimental
-Double-shot primary (these work well even with network latency, as long as jitter is low)
+These work well even with network latency, as long as jitter is low.
+
+#### Double-shot primary
 `A 875: ! c 1050: A 1300: ! c`
 
-Melee overclock
+#### Melee overclock
 impossible, so don't bother
 
-Grenade quickswitch/overclock (nade spam)
+#### Grenade quickswitch/overclock (nade spam)
 repeat `d ! c` once per throwable
 
 ### Theoretical
-Double-shot primary over 250ms
-`999 gun1 251 gun2`
-`A 999: ! c 1000: A 1250: ! c`
+#### Double-shot primary over 250ms
+`999 gun1 251 gun2`  
+`A 999: ! c 1000: A 1250: ! c`  
 999 can be increased as long as it remains less than 1000, which makes the 250ms possible as a limit
 
-Double-shot primary then secondary
-`A 999: ! c 1000: B 1250: ! c`
+#### Double-shot primary then secondary
+`A 999: ! c 1000: B 1250: ! c`  
 similar for shooting gun2 then gun 1, and for gun2 twice
 
-Shoot M870 3 times over 1250ms, first shot immediately
-`m870 900 m870 100 fs 250 m870`
+#### Shoot M870 3 times over 1250ms, first shot immediately
+`m870 900 m870 100 fs 250 m870`  
 `! c a 900: ! c 1000: A 1250: !`
 
-Shoot SPAS-12 3 times over 1250ms, first shot immediately
-`spas 750 spas 250 fs 250 spas`
+#### Shoot SPAS-12 3 times over 1250ms, first shot immediately
+`spas 750 spas 250 fs 250 spas`  
 `! c a 750: ! c 1000: A 1250: !`
 
-Shoot M870 3 times over 1150ms
-`999 M8 1 fs 250 M8 900 M8`
+#### Shoot M870 3 times over 1150ms
+`999 M8 1 fs 250 M8 900 M8`  
 `A 999: ! c 1000: A 1250: ! d a 2150: !`
 
-Shoot SPAS-12 3 times over 1000ms
-`999 SPAS 1 fs 250 SPAS 750 SPAS`
+#### Shoot SPAS-12 3 times over 1000ms
+`999 SPAS 1 fs 250 SPAS 750 SPAS`  
 `A 999: ! c 1000: A 1250: ! d a 2000: !`
 
-Triple shot with MP220+M870 (aka MP220+M870 desync)
+#### Triple shot with MP220+M870 (aka MP220+M870 desync)
 `A 1000: ! B 1250: ! a 1550: !`
 
-#### Advanced
+### Advanced
 5x to 7x shot combos with M870+MP220 (minimize spacing between shots, as in minimize maximum time between adjacent shots)
+
 *These were determined manually and are not guaranteed to be optimal.*
 ```
 5 shots (312.5 ms, 1250 ms total)
@@ -122,14 +125,14 @@ This defines a language that compactly describes a sequence of actions that coul
 It's irrelevant whether you use `equip other weapon` or use a `number key` to switch, so they are not included in the notation. I originally thought `swap weapons` was irrelevant, but it's actually needed to handle cancelling burst weapons' shots.
 
 ## Timers
-**Old System**
+### Old System
 Every weapon tracks the last time it was fired. After being fired, movement is slowed and no shot is allowed until the `fire delay` has passed. Switching weapons removes the slow penalty and uses the `switch delay` instead of `fire delay` for determining whether a shot is allowed.
 
 For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (switch delay 1000ms), shoot, switch to melee, switch to SPAS-12 at time 749 ms, shoot at time 750 ms, switch to SV-98, shoot at time 1000ms, switch to SPAS-12, and shoot at time 1500ms. This pattern explains the name `desync`.
 
 Stark says this system was used until the double pump nerf (Sep 2018), but it existed in client code by Jan 2018, probably unused at the server.
 
-**New system**
+### New system
 When you switch to a weapon, if the free switch timer has expired (initial state), the effective switch delay is reduced to 250ms (unless it is a switch to melee, throwables, or any weapon whose deploy group matches that of the old weapon), and the timer expires after 1000ms (a switch exactly 1000ms later is a free switch).
 
 In other words,
@@ -139,16 +142,16 @@ Melee and grenades always have zero switch delay, but all other weapons have at 
 
 As a consequence, desync now refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
-**Wasted Free Switches**
+#### Wasted Free Switches
 Free switches from pump to pump (same deploy group) *waste* the free switch, and so do switches to melee or throwables.
 
-**Melee**
+#### Melee
 Melee cannot be overclocked, even though it always has zero switch delay. Melee applies damage after a delay, and switching will cancel it. When damage is applied, a cooldown timer is applied so that melee damage will be nullified before it expires. This prevents any potential damage increase over spam-clicking melee.
 
-**Throwables**
+#### Throwables
 Throwables always have zero switch delay. However, by clicking and immediately switching, the grenade is dropped rather than thrown. This trick can be used to drop many nades in a short time.
 
-**How to Time**
+#### How to Time
 - use a med for a short time and then cancel
 - use reload timer on empty secondary gun and then cancel
 - use timer when cooking a grenade
@@ -177,13 +180,13 @@ Legacy terms
 "soft overclock" is just shooting slowly but also using free switch.
 
 ## Glossary
-**Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
-**Overclock**: switching weapons to increase DPS (doesn't actually exist except for throwables, and attempts usually result in underclock for guns and melee)
-**Noslow**: switching after a shot to minimize movement penalty to 1 frame
-**Maxfire**: firing both guns at maximum damage rate, measured in damage per second (e.g. shoot Model 94 twice, switch to other Model 94)
-**Desync**: maxfire, but all shots require noslow (e.g. M870 and two MP220 shots, in any of the 3 orders)
-**Free Switch**: a feature of the new switching system, allowing guns to be shot shortly after switching, under certain conditions
-**Deploy Group**: a property of weapons limiting their use of free switch
+- **Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
+- **Overclock**: switching weapons to increase DPS (doesn't actually exist except for throwables, and attempts usually result in underclock for guns and melee)
+- **Noslow**: switching after a shot to minimize movement penalty to 1 frame
+- **Maxfire**: firing both guns at maximum damage rate, measured in damage per second (e.g. shoot Model 94 twice, switch to other Model 94)
+- **Desync**: maxfire, but all shots require noslow (e.g. M870 and two MP220 shots, in any of the 3 orders)
+- **Free Switch**: a feature of the new switching system, allowing guns to be shot shortly after switching, under certain conditions
+- **Deploy Group**: a property of weapons limiting their use of free switch
 
 ## Videos
 SV-98 underclock (SV-98 double-shot)
