@@ -203,8 +203,8 @@ also check out Stark's clips in his guide
 ## No Overclock
 **There is no overclock (only underclock).**
 
-> **Spoon boy**: Do not try and do the overclock. That's impossible. Instead, only try to realize the truth.
-> **Neo**: What truth?
+> **Spoon boy**: Do not try and do the overclock. That's impossible. Instead, only try to realize the truth.  
+> **Neo**: What truth?  
 > **Spoon boy**: ***There is no overclock.***
 
 It's very ironic that underclocking is actually a method to ***delay*** shots, yet it's being portrayed as something to ***speed up*** shots. Imagine `spas 250 mosin 750 spas 250 mosin` from regular quickswitch. Then with underclocking, one can forfeit the second spas shot in exchange for being able to delay the first mosin shot by less than 750ms. One can even forfeit the first spas shot and replace the spas with melee, making it appear purely as a mosin double-shot, yet shooting it no faster than regular naïve quickswitch.
