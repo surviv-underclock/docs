@@ -176,8 +176,8 @@ Burst weapons can also be used by having the burst end before switching to melee
 Melee and Throwables are already explained in #timers
 
 Legacy terms
-"hard overclock" is just using free switch to shoot twice over 250ms.
-"soft overclock" is just shooting slowly but also using free switch.
+- "hard overclock" is just using free switch to shoot twice over 250ms.
+- "soft overclock" is just shooting slowly but also using free switch.
 
 ## Glossary
 - **Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
