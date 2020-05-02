@@ -1,5 +1,7 @@
 # surviv.io Timers
 
+This guide explains how to "overclock" (underclock) in surviv.io.
+
 ## Table of Contents
 * [Instructions](#instructions) (how to underclock + advanced instructions requiring more math)
 * [Notation](#notation) (how to understand [#instructions](#instructions))
