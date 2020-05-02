@@ -90,7 +90,7 @@ An optimized algorithm to find best sequences that optimize certain objectives (
 surviv.io is actually a very hard math game just because of its weapon timer system.
 
 ## Notation
-Here is a formal definition of my notation, in ABNF (as described in RFC 5234):
+Here is a formal definition of the notation, in ABNF (as described in RFC 5234):
 ```
 sequence = *space 1*(instruction *space)
 
@@ -122,7 +122,7 @@ switch-4 = "d" / "D" ; equip throwables
 ```
 This defines a language that compactly describes a sequence of actions that could be converted to a macro and executed.
 
-It's irrelevant whether you use `equip other weapon` or use a `number key` to switch, so they are not included in the notation. I originally thought `swap weapons` was irrelevant, but it's actually needed to handle cancelling burst weapons' shots.
+It's irrelevant whether one switches with `equip other weapon` or a `number key`, so they are not included in the notation. I originally thought `swap weapons` was irrelevant, but it's actually needed to handle cancelling burst weapons' shots.
 
 ## Timers
 ### Old System
@@ -133,7 +133,7 @@ For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (sw
 Stark says this system was used until the double pump nerf (Sep 2018), but it existed in client code by Jan 2018, probably unused at the server.
 
 ### New system
-When you switch to a weapon, if the free switch timer has expired (initial state), the effective switch delay is reduced to 250ms (unless it is a switch to melee, throwables, or any weapon whose deploy group matches that of the old weapon), and the timer expires after 1000ms (a switch exactly 1000ms later is a free switch).
+When switching to a weapon, if the free switch timer has expired (initial state), the effective switch delay is reduced to 250ms (unless it is a switch to melee, throwables, or any weapon whose deploy group matches that of the old weapon), and the timer expires after 1000ms (a switch exactly 1000ms later is a free switch).
 
 In other words,
 > When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a free switch. A free switch allows the player to shoot the new gun after 250ms, unless the deploy groups of the old and new weapon are the same. If there is no free switch, or the deploy groups match, then the original switch delay is applied.
