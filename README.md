@@ -98,8 +98,8 @@ Here is a formal definition of the notation, in ABNF (as described in RFC 5234):
 ```
 sequence = *space 1*(instruction *space)
 
-instruction = label / shoot / shoot-start / shoot-end / swap
-                / switch-1 / switch-2 / switch-3 / switch-4
+instruction = label / shoot / shoot-start / shoot-end / switch
+                / equip-1 / equip-2 / equip-3 / equip-4
 
 space = SP / CR / LF
 
@@ -112,21 +112,21 @@ number = *DIGIT / *DIGIT "." *DIGIT
 
 ; all following instructions are executed immediately after each other
 
-shoot-start = "<" ; shoot key down
-shoot-end = ">" ; shoot key up
+shoot-start = "<" ; shoot key down (default is mouse down)
+shoot-end = ">" ; shoot key up (default is mouse up)
 
 ; press key and release immediately
 shoot = "!"
-swap = "\" ; swap gun slots
+switch = "\" ; switch gun slots (default keybind is T)
 ; use uppercase to denote free switches
-switch-1 = "a" / "A" ; equip primary
-switch-2 = "b" / "B" ; equip secondary
-switch-3 = "c" / "C" ; equip melee
-switch-4 = "d" / "D" ; equip throwables
+equip-1 = "a" / "A" ; equip primary
+equip-2 = "b" / "B" ; equip secondary
+equip-3 = "c" / "C" ; equip melee
+equip-4 = "d" / "D" ; equip throwables
 ```
 This defines a language that compactly describes a sequence of actions that could be converted to a macro and executed.
 
-It's irrelevant whether one switches with `equip other weapon` or a `number key`, so they are not included in the notation. I originally thought `swap weapons` was irrelevant, but it's actually needed to handle cancelling burst weapons' shots.
+It's irrelevant whether one switches with `equip other weapon` or a `number key`, so they are not included in the notation. I originally thought `switch weapon slots` was irrelevant, but it's actually needed to handle cancelling burst weapons' shots.
 
 ## Timers
 ### Old System
