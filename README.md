@@ -53,6 +53,8 @@ similar for shooting gun2 then gun 1, and for gun2 twice
 `A 999: ! c 1000: A 1250: ! d a 2000: !`
 
 #### Triple shot with MP220+M870 (aka MP220+M870 desync)
+`mp220 250 m870 300 mp220`  
+`! B 250: ! a 550: !`  
 `A 1000: ! B 1250: ! a 1550: !`
 
 ### Advanced
