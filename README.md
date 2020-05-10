@@ -1,6 +1,6 @@
 # surviv.io Timers
 
-This guide explains how to "overclock" (underclock) in surviv.io.
+This guide explains how to underclock ("overclock") in surviv.io.
 
 ## Table of Contents
 * [Instructions](#instructions) (how to underclock + advanced instructions requiring more math)
@@ -10,12 +10,12 @@ This guide explains how to "overclock" (underclock) in surviv.io.
 * [Videos](#videos) (watch [#instructions](#instructions) in action)
 * [No Overclock](#no-overclock) ("There is no overclock!")
 
-Extras
+Other pages
 * [Data Tables](data-tables.md) (switch delays and deploy groups of all weapons)
 
 ## Instructions
 ### Experimental
-These work well even with network latency, as long as jitter is low.
+These timings work well even with network latency, as long as jitter is low.
 
 #### Double-shot primary
 `A 875: ! c 1050: A 1300: ! c`
@@ -137,23 +137,25 @@ For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (sw
 Stark says this system was used until the double pump nerf (Sep 2018), but it existed in client code by Jan 2018, probably unused at the server.
 
 ### New system
-When switching to a weapon, if the free switch timer has expired (initial state), the effective switch delay is reduced to 250ms (unless it is a switch to melee, throwables, or any weapon whose deploy group matches that of the old weapon), and the timer expires after 1000ms (a switch exactly 1000ms later is a free switch).
+When switching to a weapon, if the `free switch timer` has expired (initial state), the `effective switch delay` is reduced to 250ms (unless it is to melee, throwables, or any weapon whose `deploy group` matches that of the old weapon), and the `free switch timer` expires after 1000ms (a switch exactly 1000ms later is a free switch). Otherwise, the `effective switch delay` is the `switch delay` of the weapon (or zero for melee and throwables).
+
+A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the last shot instead of the last switch.
 
 In other words,
-> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a free switch. A free switch allows the player to shoot the new gun after 250ms, unless the deploy groups of the old and new weapon are the same. If there is no free switch, or the deploy groups match, then the original switch delay is applied.
+> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a `free switch`. A `free switch` allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no `free switch`, or the `deploy group`s match, then the original `switch delay` is applied.
 
-Melee and grenades always have zero switch delay, but all other weapons have at least 250ms switch delay, so they either benefit from the free switch or have no effect if their switch delay is already 250ms.
+Melee and grenades always have zero `effective switch delay`, but all other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or have no effect if their `switch delay` is already 250ms.
 
-As a consequence, desync now refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
+As a consequence, `desync` is now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
 #### Wasted Free Switches
-Free switches from pump to pump (same deploy group) *waste* the free switch, and so do switches to melee or throwables.
+`Free switch`es from pump to pump (same `deploy group`) *waste* the free switch, and so do switches to melee or throwables.
 
 #### Melee
 Melee cannot be overclocked, even though it always has zero switch delay. Melee applies damage after a delay, and switching will cancel it. When damage is applied, a cooldown timer is applied so that melee damage will be nullified before it expires. This prevents any potential damage increase over spam-clicking melee.
 
 #### Throwables
-Throwables always have zero switch delay. However, by clicking and immediately switching, the grenade is dropped rather than thrown. This trick can be used to drop many nades in a short time.
+Throwables always have zero `effective switch delay`. However, by clicking and immediately switching, the grenade is dropped rather than thrown. This trick can be used to drop many nades in a short time.
 
 #### How to Time
 - use a med for a short time and then cancel
