@@ -138,19 +138,23 @@ For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (sw
 Stark says this system was used until the double pump nerf (Sep 2018), but it existed in client code by Jan 2018, probably unused at the server.
 
 ### New system
-When switching to a weapon, if the `free switch timer` has expired (initial state), the `effective switch delay` is reduced to 250ms (unless it is to melee, throwables, or any weapon whose `deploy group` matches that of the old weapon), and the `free switch timer` expires after 1000ms (a switch exactly 1000ms later is a free switch). Otherwise, the `effective switch delay` is the `switch delay` of the weapon (or zero for melee and throwables).
+When switching to a weapon, if the `free switch timer` has expired (initial state), the switch is a **free switch**, and the `free switch timer` expires again after 1000ms (a switch exactly 1000ms later is a free switch).
+
+- If a switch is to melee or throwables, the `effective switch delay` is zero.
+- Otherwise, if a switch is a free switch and the new weapon's `deploy group` is not that of the old weapon, the `effective switch delay` is reduced to 250ms.
+- Otherwise, the `effective switch delay` is the `switch delay` of the weapon.
 
 A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the *last shot* instead of the *last switch*.
 
 In other words,
-> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a **free switch**. A **free switch** allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no **free switch**, or the `deploy group`s match, then the original `switch delay` is applied.
+> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a **free switch**, which allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no **free switch** (or the `deploy group`s match), then the original `switch delay` is applied.
 
-Melee and grenades always have zero `effective switch delay`, but all other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or have no effect if their `switch delay` is already 250ms.
+Melee and grenades always have zero `effective switch delay`. All other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or are unaffected if their `switch delay` is already 250ms.
 
-As a consequence, **desync** now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
+As a result, **desync** now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
 #### Wasted Free Switches
-**Free switch**es from pump to pump (same `deploy group`) *waste* the **free switch**, and so do **free switch**es to melee or throwables.
+**Free switch**es from pump to pump or cannon to cannon (same `deploy group`) *waste* the **free switch**, and so do **free switch**es to melee or throwables.
 
 In both cases, wasted free switches can be avoided by switching to melee or throwables before the `free switch timer` expires.
 
