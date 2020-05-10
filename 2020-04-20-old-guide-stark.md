@@ -1,6 +1,6 @@
 This article has been reposted with permission from the original author. Originally posted at `2020-04-20T04:20-0400`, it uses outdated terminology for *underclocking*, but the part about *overclocking* melee and nades is accurate.
 
-Overclocking Guide by Stark#0163
+# Overclocking Guide by Stark#0163
 
 Overclock, or noslowing one gun two or more times in rapid succession, is a very advanced variation of desync, which is firing both guns at maximum noslowed rates. Overclock seeks to maximize burst damage by minimizing the "critical window" across which damage is dealt. As an extension of desync, it is necessarily also useful in determining optimal maxfire (maximum damage dealt over a certain critical window, full stop) pattern.
 
@@ -26,18 +26,18 @@ Melee cannot be overclocked, any attempts to do so will result in no damage due 
 
 There are 3 main ways to time a free switch. M-cancelling, short for medcancelling, is using a med for a short time then cancelling it to kill this click [https://streamable.com/9igu8o], as a con it slows you and is by far the most telegraphed way to cc (click cancel).  R-cancelling, or reload cancelling, is reloading then cancelling the reload to cancel the click [https://streamable.com/k9ijx5], requires one non-full secondary gun. And perhaps the least telegraphed of the 3 ccs is G-cancelling, or grenade cancelling [https://streamable.com/7q12q5], simply hotkeying to and from a grenade.
 
--Glossary-
-Overclock: timing shots with a free switch to noslow two weapons in rapid succession.
-Desync: firing both guns at maximum noslowed rate.
-Maxfire: firing both guns at maximum rate, full stop.
-Free Switch: a feature of the new switching system, allowing guns to be shot shortly after switching, under certain conditions (see above).
-Deploy Group: a shared feature of a few guns limiting their noslow ability.
-Telegraph: how much setup and this how predictable an overclock method is.
-M-cancel: med cancel.
-R-cancel: reload cancel.
-G-cancel: grenade cancel.
+## Glossary
+- Overclock: timing shots with a free switch to noslow two weapons in rapid succession.
+- Desync: firing both guns at maximum noslowed rate.
+- Maxfire: firing both guns at maximum rate, full stop.
+- Free Switch: a feature of the new switching system, allowing guns to be shot shortly after switching, under certain conditions (see above).
+- Deploy Group: a shared feature of a few guns limiting their noslow ability.
+- Telegraph: how much setup and this how predictable an overclock method is.
+- M-cancel: med cancel.
+- R-cancel: reload cancel.
+- G-cancel: grenade cancel.
 
--Credit-
+## Credit
 163 Stark, beyblade, Sleepy, n?, 179 Squsodu, 165 Sniper, 173 wxu, 175 SwiPe, OmegaRox, PenguinChungus, Nobody, Ice.
 
 Oh, and 3+ shooting is known, however is to be kept private, at least for now. :163:
