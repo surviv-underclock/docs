@@ -146,7 +146,7 @@ In other words,
 
 Melee and grenades always have zero `effective switch delay`, but all other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or have no effect if their `switch delay` is already 250ms.
 
-As a consequence, `desync` is now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
+As a consequence, `desync` now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
 #### Wasted Free Switches
 `Free switch`es from pump to pump (same `deploy group`) *waste* the free switch, and so do switches to melee or throwables.
