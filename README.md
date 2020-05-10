@@ -133,24 +133,26 @@ It's irrelevant whether one switches with `equip other weapon` or a `number key`
 ### Old System
 Every weapon tracks the last time it was fired. After being fired, movement is slowed and no shot is allowed until the `fire delay` has passed. Switching weapons removes the slow penalty and uses the `switch delay` instead of `fire delay` for determining whether a shot is allowed.
 
-For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (switch delay 1000ms), shoot, switch to melee, switch to SPAS-12 at time 749 ms, shoot at time 750 ms, switch to SV-98, shoot at time 1000ms, switch to SPAS-12, and shoot at time 1500ms. This pattern explains the name `desync`.
+For example, one can shoot the SPAS-12 (switch delay 750ms), switch to SV-98 (switch delay 1000ms), shoot, switch to melee, switch to SPAS-12 at time 749 ms, shoot at time 750 ms, switch to SV-98, shoot at time 1000ms, switch to SPAS-12, and shoot at time 1500ms. This pattern explains the name **desync**.
 
 Stark says this system was used until the double pump nerf (Sep 2018), but it existed in client code by Jan 2018, probably unused at the server.
 
 ### New system
 When switching to a weapon, if the `free switch timer` has expired (initial state), the `effective switch delay` is reduced to 250ms (unless it is to melee, throwables, or any weapon whose `deploy group` matches that of the old weapon), and the `free switch timer` expires after 1000ms (a switch exactly 1000ms later is a free switch). Otherwise, the `effective switch delay` is the `switch delay` of the weapon (or zero for melee and throwables).
 
-A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the last shot instead of the last switch.
+A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the *last shot* instead of the *last switch*.
 
 In other words,
-> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a `free switch`. A `free switch` allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no `free switch`, or the `deploy group`s match, then the original `switch delay` is applied.
+> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a **free switch**. A **free switch** allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no **free switch**, or the `deploy group`s match, then the original `switch delay` is applied.
 
 Melee and grenades always have zero `effective switch delay`, but all other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or have no effect if their `switch delay` is already 250ms.
 
-As a consequence, `desync` now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
+As a consequence, **desync** now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
 #### Wasted Free Switches
-`Free switch`es from pump to pump (same `deploy group`) *waste* the free switch, and so do switches to melee or throwables.
+**Free switch**es from pump to pump (same `deploy group`) *waste* the **free switch**, and so do **free switch**es to melee or throwables.
+
+In both cases, wasted free switches can be avoided by switching to melee or throwables before the `free switch timer` expires.
 
 #### Melee
 Melee cannot be overclocked, even though it always has zero `effective switch delay`. Melee applies damage after a delay, and switching will cancel it. When damage is applied, a cooldown timer is applied so that melee damage will be nullified before it expires. This prevents any potential damage increase over spam-clicking melee.
