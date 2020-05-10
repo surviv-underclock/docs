@@ -12,6 +12,7 @@ This guide explains how to underclock ("overclock") in surviv.io.
 
 Other pages
 * [Data Tables](data-tables.md) (switch delays and deploy groups of all weapons)
+* [Old Guide](2020-04-20-old-guide-stark.md) by Stark
 
 ## Instructions
 ### Experimental
