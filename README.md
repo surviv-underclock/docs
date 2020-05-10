@@ -152,7 +152,7 @@ As a consequence, `desync` is now commonly refers to noslowing weapons, but shoo
 `Free switch`es from pump to pump (same `deploy group`) *waste* the free switch, and so do switches to melee or throwables.
 
 #### Melee
-Melee cannot be overclocked, even though it always has zero switch delay. Melee applies damage after a delay, and switching will cancel it. When damage is applied, a cooldown timer is applied so that melee damage will be nullified before it expires. This prevents any potential damage increase over spam-clicking melee.
+Melee cannot be overclocked, even though it always has zero `effective switch delay`. Melee applies damage after a delay, and switching will cancel it. When damage is applied, a cooldown timer is applied so that melee damage will be nullified before it expires. This prevents any potential damage increase over spam-clicking melee.
 
 #### Throwables
 Throwables always have zero `effective switch delay`. However, by clicking and immediately switching, the grenade is dropped rather than thrown. This trick can be used to drop many nades in a short time.
