@@ -21,7 +21,11 @@ However, post-double pump removal, the switch system changed. As described by th
 
 Essentially, overclocking is waiting until the free switch (fs) and then doubling the shot at that point. 
 
-As part of FSM, double pump was rendered "impossible" due to the addition of deploy groups. If two guns have an existent deploy group, and their deploy group is identical, then they may not be noslowed between. As of 4/20/2020, pump shotguns (M870, SPAS-12, Hawk 12G) share a deploy group of 1, and the Potato Cannon, Heart Cannon, and M79 share a deploy group of 3. No other gun has a deploy group. Interestingly enough, through the use of the melee or grenade slot, as deploy group is tracked by last gun, double pump is still possible. By interposing fists, the deploy group may be circumvented [https://streamable.com/bzva8o]. This may be done with 2 different pump shotguns as well [https://streamable.com/7ggc0c (done using 1 and 2)] [https://streamable.com/n2ucyt (my preferred method, using switch slot positions)]. On a related note, interposing melee is helpful for when one wants to swap the gun they are overclocking [https://streamable.com/q3txh7].
+#### Deploy Groups
+As part of FSM, double pump was rendered "impossible" due to the addition of deploy groups. If two guns have an existent deploy group, and their deploy group is identical, then they may not be noslowed between. As of 4/20/2020, pump shotguns (M870, SPAS-12, Hawk 12G) share a deploy group of 1, and the Potato Cannon, Heart Cannon, and M79 share a deploy group of 3. No other gun has a deploy group.
+
+##### Melee Trick
+Interestingly enough, through the use of the melee or grenade slot, as deploy group is tracked by last gun, double pump is still possible. By interposing fists, the deploy group may be circumvented [https://streamable.com/bzva8o]. This may be done with 2 different pump shotguns as well [https://streamable.com/7ggc0c (done using 1 and 2)] [https://streamable.com/n2ucyt (my preferred method, using switch slot positions)]. On a related note, interposing melee is helpful for when one wants to swap the gun they are overclocking [https://streamable.com/q3txh7].
 
 ## How to do it
 To overclock, swap to the gun to be overclocked, wait 920ms (I like to visualize this as approximately the time in between 2 M870 shots, traditionally noslowed), shoot, swap off, wait another 100ms (at time 1020ms), swap back, and finally fire again. Beyblade found it more useful to shoot at time 1270ms with a macro, however I prefer to just rapidfire click as it usually produces faster results.
