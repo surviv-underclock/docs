@@ -213,6 +213,27 @@ https://clips.twitch.tv/HomelyKawaiiSproutPRChase
 
 also check out Stark's clips in his guide
 
+## Credits
+- beyblade (for solving the mystery behind underclocking within days of seeing it initially and writing the second guide)
+- Stark (for writing the first version of a guide)
+- Research Team (for confirming my solution and providing various feedback)
+
+Research Team on Discord:
+- Stark#0163 (since 2020-03-23)
+- Sleepy#3631 (since 2020-03-23)
+- wxu#7830 (since 2020-03-23)
+- OmegaBox#8139 (since 2020-03-23)
+- PenguinChungus#7043 (since 2020-03-23)
+- n?#0558 (since 2020-03-24)
+- 165 Sniper#6198 (since 2020-03-24)
+- Squsodu#8240 (since 2020-04-02)
+- SwiPe#0175 (since 2020-04-04)
+- beyblade (since 2020-04-12)
+- Arctic#9133 (2020-04-02 to 2020-04-10)
+- apricot#5676 (2020-03-23 to 2020-04-04)
+- robopig3002#7162 (2020-03-23 to 2020-04-02)
+- desmos#1685 (2020-03-23 to 2020-04-02)
+
 ## No Overclock
 **There is no overclock (only underclock).**
 
