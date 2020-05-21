@@ -96,7 +96,7 @@ surviv.io is actually a very hard math game just because of its weapon timer sys
 
 ## Notation
 Here is a formal definition of the notation, in ABNF (as described in RFC 5234):
-```
+```abnf
 sequence = *space 1*(instruction *space)
 
 instruction = label / shoot / shoot-start / shoot-end / switch
