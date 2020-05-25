@@ -141,7 +141,7 @@ Stark says this system was used until the double pump nerf (Sep 2018), but it ex
 When switching to a weapon, if the `free switch timer` has expired (initial state), the switch is a **free switch**, and the `free switch timer` expires again after 1000ms (a switch exactly 1000ms later is a free switch).
 
 - If a switch is to melee or throwables, the `effective switch delay` is zero.
-- Otherwise, if a switch is a **free switch** and the new weapon's `deploy group` is not that of the old weapon, the `effective switch delay` is reduced to 250ms.
+- Otherwise, if a switch is a **free switch** and the new weapon's `deploy group` is not that of the old weapon, the `effective switch delay` is 250ms.
 - Otherwise, the `effective switch delay` is the `switch delay` of the weapon.
 
 A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the *last shot* instead of the *last switch*.
