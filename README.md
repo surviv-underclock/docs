@@ -147,7 +147,7 @@ When switching to a weapon, if the `free switch timer` has expired (initial stat
 A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the *last shot* instead of the *last switch*.
 
 In other words,
-> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a **free switch**, which allows the player to shoot the new gun after 250ms (or earlier), unless the `deploy group`s of the old and new weapon are the same. If there is no **free switch** (or the `deploy group`s match), then the original `switch delay` is applied.
+> When switching weapons, if the last free switch was at least 1000ms ago (or it is the first switch), it's a **free switch**, which allows the player to shoot the new gun usually after 250ms, unless the `deploy group`s of the old and new weapon are the same. If there is no **free switch** (or the `deploy group`s match), then the original `switch delay` is applied.
 
 Melee and grenades always have zero `effective switch delay`. All other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or are unaffected if their `switch delay` is already 250ms.
 
