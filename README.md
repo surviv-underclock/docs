@@ -168,6 +168,7 @@ Throwables always have zero `effective switch delay`. However, by clicking and i
 - use a med for a short time and then cancel
 - use reload timer on empty secondary gun and then cancel
 - use timer when cooking a grenade
+- use a metronome
 - have a monotonic clock on the wall and refer to it
 - get skilled at timing
 - use macros
