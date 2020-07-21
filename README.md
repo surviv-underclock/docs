@@ -192,6 +192,7 @@ Melee and Throwables are already explained in #timers
 Legacy terms
 - "hard overclock" is just using free switch to shoot twice over 250ms.
 - "soft overclock" is just shooting slowly but also using free switch.
+There is no real distinction between "hard overclock" and "soft overclock", but "soft overclock" is usually the result of either a failed attempt at "hard overclock" or spacing shots to minimize spacing between shots.
 
 ## Glossary
 - **Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
