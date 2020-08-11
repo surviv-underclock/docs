@@ -73,9 +73,8 @@ A 999: ! c 1000: A 1250: ! c
 ```
 
 ### Advanced
-5x to 7x shot combos with M870+MP220 (minimize spacing between shots, as in minimize maximum time between adjacent shots)
-
-*These were determined manually and are not guaranteed to be optimal.*
+#### M870+MP220 shot combos
+Minimize spacing between shots (minimize maximum time between adjacent shots) *(determined manually and not guaranteed to be optimal).*
 ```
 5 shots (312.5 ms, 1250 ms total)
 m870 312.5 m870 312.5 mp220 312.5 mp220 312.5 m870
@@ -92,16 +91,55 @@ m870 250 m870 625 mp220 625 m870 625 mp220 625 m870 625 m870
 m870 fs 250 m870 625 mp220 125 fs 375 m870 625 mp220 fs 625 m870 375 fs 250 m870
 A 999: ! c 1000: A 1250: ! b 1875: ! c 2000: A 2375: ! b 3000: ! A 3625: ! c 4000: A 4250: !
 ```
-
-Fire all 7 M870+MP220 shots as quickly as possible (minimum first-to-last shot time of 2900 ms)
+Minimize first-to-last shot time
 ```
-700 M870 300 MP220 fs 250 M870 900 M870 900 M870 300 MP220 fs 250 M870
+3 shots over 550ms
+700 MP 300 MP fs 250 M8
+B 700: ! d b 1000: ! A 1250: !
+
+4 shots over 850ms
+700 M8 300 MP fs 250 M8 300 MP
+A 700: ! b 1000: ! A 1250: ! b 1550: !
+
+5 shots over 1251ms
+999 M8 1 fs 250 M8 300 MP 300 MP 150 fs 250 M8
+A 999: ! c 1000: A 1250: ! b 1550: ! d b 1850: ! c 2000: A 2250: !
+
+6 shots over 2151ms
+999 M8 1 fs 250 M8 300 MP 300 MP 150 fs 250 M8 900 M8
+A 999: ! c 1000: A 1250: ! b 1550: ! d b 1850: ! c 2000: A 2250: ! d a 3150: !
+
+7 shots over 2900ms
+700 M8 300 MP fs 250 M8 900 M8 900 M8 300 MP fs 250 M8
 A 700: ! b 1000: ! A 1250: ! d a 2150: ! d a 3050: ! b 3350: ! A 3600: !
 ```
-Fire all 7 M870+MP220 shots as quickly as possible (minimize time to last shot, at 3150ms)
+Minimize start-to-last shot time
 ```
+3 shots by 550ms (2 solutions)
+M8 fs 250 MP 300 MP
+a ! B 250: ! d b 550: !
+MP fs 250 M8 300 MP
+b ! A 250: ! b 550: !
+
+4 shots by 1250ms (3 solutions)
+M8 fs 250 MP 300 MP 450 fs 250 M8
+a ! B 250: ! d b 550: ! c 1000: A 1250: !
+M8 300 MP 300 MP 400 fs 250 M8
+a ! b 300: ! d b 600: ! c 1000: A 1250: !
+MP fs 250 M8 300 MP 450 fs 250 M8
+b ! A 250: ! b 550: ! c 1000: A 1250: !
+
+5 shots by 1750ms
+M8 900 M8 300 MP fs 250 M8 300 MP
+a ! d a 900: ! b 1200: ! A 1450: ! b 1750: !
+
+6 shots by 2250ms
+M8 900 M8 100 fs 250 M8 300 MP 300 MP 150 fs 250 M8
+a ! d a 900: ! c 1000: A 1250: ! b 1550: ! d b 1850: ! c 2000: A 2250: !
+
+7 shots by 3150ms
 M8 900 M8 100 fs 250 M8 300 MP 300 MP 150 fs 250 M8 900 M8
-! d a 900: ! c 1000: A 1250: ! b 1550: ! d b 1850: ! c 2000: A 2250: ! d a 3150: !
+a ! d a 900: ! c 1000: A 1250: ! b 1550: ! d b 1850: ! c 2000: A 2250: ! d a 3150: !
 ```
 
 An optimized algorithm to find best sequences that optimize certain objectives (minimize time from first to last shot, minimize time from start to last shot, minimize maximum spacing) is a difficult and open problem to solve.
