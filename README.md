@@ -58,6 +58,20 @@ similar for shooting gun2 then gun 1, and for gun2 twice
 `! B 250: ! a 550: !`  
 `A 1000: ! B 1250: ! a 1550: !`
 
+#### Common Mistakes for Double Shot
+Don't shoot too early, don't switch away too late, don't switch back too early, and don't shoot the second shot too early.
+```
+A 999: ! c 1000: A 1250: ! c
+^      ^ ^       ^       ^ ^
+|------+-+-------+-------+-+- (1) start free switch timer
+       |-|-------+-------+-+- shoot and then switch (2)
+         ^       |-------|-+- free switch (3), and then shoot after 250ms
+         |-----------------|- noslow
+
+(2) if the switch is too late, the free switch is wasted
+(3) but not too early
+```
+
 ### Advanced
 5x to 7x shot combos with M870+MP220 (minimize spacing between shots, as in minimize maximum time between adjacent shots)
 
