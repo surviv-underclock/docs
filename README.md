@@ -208,7 +208,7 @@ As a result, **desync** now commonly refers to noslowing weapons, but shooting o
 #### Client free switch timer
 The above applies to the `server free switch timer`, which determines when you can shoot.
 
-The `client free switch timer` is very similar, and it affects the weapon deploy sound. It does not start when a free switch is wasted by switching to melee/throwables. Also, it resets when swapping gun slots (default keybind is T).
+The `client free switch timer` is very similar, and it affects the weapon deploy sound. It does not start when a free switch is wasted by switching to melee/throwables. Also, it sets to 1000ms when swapping gun slots (default keybind is T).
 
 #### Wasted Free Switches
 **Free switch**es from pump to pump or cannon to cannon (same `deploy group`) *waste* the **free switch**, and so do **free switch**es to melee or throwables.
