@@ -205,11 +205,6 @@ Melee and grenades always have zero `effective switch delay`. All other weapons 
 
 As a result, **desync** now commonly refers to noslowing weapons, but shooting one with 250ms or 300ms switch delay multiple times before using the free switch on the one with large switch delay.
 
-#### Client free switch timer
-The above applies to the `server free switch timer`, which determines when you can shoot.
-
-The `client free switch timer` is very similar, and it affects the weapon deploy sound. It does not start when a free switch is wasted by switching to melee/throwables. Also, it sets to 1000ms when swapping gun slots (default keybind is T).
-
 #### Wasted Free Switches
 **Free switch**es from pump to pump or cannon to cannon (same `deploy group`) *waste* the **free switch**, and so do **free switch**es to melee or throwables.
 
@@ -220,6 +215,14 @@ Melee cannot be overclocked, even though it always has zero `effective switch de
 
 #### Throwables
 Throwables always have zero `effective switch delay`. However, by clicking and immediately switching, the grenade is dropped rather than thrown. This trick can be used to drop many nades in a short time.
+
+#### Client free switch timer
+The above applies to the `server free switch timer`, which determines when you can shoot.
+
+The `client free switch timer` is very similar, and it affects the weapon deploy sound. There are two notable differences:
+
+- When a server free switch is wasted by switching to melee/throwables, server-side, the timer does not start, so only switches to primary or secondary can be a client free switch.
+- When swapping gun slots (default keybind is T), the timer first resets to zero, forcing the next switch to be a client free switch. Next, if a gun is equipped, it will be considered as a client free switch from one gun to the other, which sets the timer to 1000ms and plays the free switch sound, or the deploy sound if both primary and secondary have the same deploy group and the fire delay timer is active. Otherwise, if melee/throwables is equipped, the next switch will still be a free switch, and no sound is played.
 
 #### How to Time
 - use a med for a short time and then cancel
