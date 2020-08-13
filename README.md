@@ -233,6 +233,130 @@ The `client free switch timer` is very similar, and it affects the weapon deploy
 - get skilled at timing
 - use macros
 
+#### Pseudocode (Python-like)
+##### Old System
+```py
+# initial values
+weap.switched = False
+weap.last_shot_time = 0
+player.slow_until = 0
+player.burst_time = 0
+player.burst_remain = 0
+
+def tick_fragments(player):
+    weap = player.weapons[player.cur_weap]
+
+    # shoot
+    delay = weap.info['switchDelay' if weap.switched else 'fireDelay']
+    if player.shooting and now - weap.last_shot_time >= delay:
+        weap.shoot()
+
+        weap.switched = False
+        weap.last_shot_time = now
+        player.slow_until = now + weap.fireDelay
+
+        if weapon.burstCount:
+            weapon.burst_remain = weapon.burstCount - 1
+            player.burst_time = now + weapon.burstDelay
+    elif player.burst_remain and now >= burst_time:
+        weap.shoot()
+        if (player.burst_remain -= 1) != 0:
+            player.burst_time = now + weapon.burstDelay
+
+    # switch weapon
+    if player.cur_weap != player.prev_weap:
+        weap.switched = True
+        player.slow_until = 0
+        player.burst_remain = 0
+
+    # moving
+    if player.slow_until > now:
+        move_speed *= weap.move_speed_multiplier
+```
+##### New System
+```py
+FREE_SWITCH_DELAY = 250 # NEW
+FREE_SWITCH_COOLDOWN = 1000 # NEW
+
+# every tick decreases _timer values by the elapsed time
+player.fire_timer = 0 # could be stored either in player or in weap
+player.slow_timer = 0
+player.free_switch_timer = 0 # NEW
+player.burst_timer = 0
+player.burst_remain = 0
+
+# **server** (what you really care about)
+def tick_fragments():
+    # shoot
+    if player.shooting and player.fire_timer <= 0:
+        weap.shoot()
+        if weapon.burstCount:
+            weapon.burst_remain = weapon.burstCount - 1
+            player.burst_timer = weapon.burstDelay
+
+        player.slow_timer = player.fire_timer = weap.fireDelay
+    elif player.burst_remain and player.burst_timer <= 0:
+        weap.shoot()
+        if (player.burst_remain -= 1) != 0:
+            player.burst_timer = weapon.burstDelay
+
+    # switch weapon (NEW)
+    if player.cur_weap != player.prev_weap: # excludes swap with T
+        old_weap = player.weapons[player.prev_weap]
+
+        effective_switch_delay = weap.switchDelay
+        if player.cur_weap in (W_MELEE, W_THROWABLE):
+            effective_switch_delay = 0
+        elif player.free_switch_timer <= 0 and not (
+            weap.deployGroup == old_weap.deployGroup
+            and weap.deployGroup is not undefined
+            and player.fire_timer > 0):
+                effective_switch_delay = FREE_SWITCH_DELAY
+
+        if player.free_switch_timer <= 0:
+            player.free_switch_timer = FREE_SWITCH_COOLDOWN
+
+        player.fire_timer = effective_switch_delay
+        player.slow_timer = 0
+        player.burst_remain = 0
+
+    # moving
+    if player.slow_timer >= 0:
+        move_speed *= weap.move_speed_multiplier
+
+# client
+player.fire_timer = 0
+player.free_switch_timer = 0
+
+def tick_fragments():
+    if shot:
+        player.fire_timer = weap.fireDelay
+
+    if player.cur_weap != player.prev_weap:
+        if swapping: # default keybind T
+            player.free_switch_timer = 0
+
+        sound = weap.sound.deploy
+        if player.cur_weap in (W_MELEE, W_THROWABLE):
+            if weap.type != 'throwable' or player.lastThrowablePickupSfxTicker <= 0:
+                play_sound_with_falloff(sound)
+        else: # elif weap.type == 'gun':
+            reject_free_switch = False
+            if player.prev_weap in (W_PRIMARY, W_SECONDARY) and player.fire_timer >= 0:
+                # important: when pressing T, old_weap is the "other gun"
+                old_weap = player.weapons[player.prev_weap]
+
+                if weap.deployGroup == old_weap.deployGroup
+                    and weap.deployGroup is not undefined:
+                        reject_free_switch = True
+
+            if not (player.free_switch_timer > 0 or reject_free_switch):
+                sound = 'gun_switch_01'
+
+            play_sound(sound)
+            player.fire_timer = 0
+```
+
 ### Corollaries
 Useful inferences are listed here.
 
