@@ -193,13 +193,13 @@ Stark says this system was used until the double pump nerf (Sep 2018), but it ex
 When switching to a weapon, if the `free switch timer` has expired (initial state), the switch is a **free switch**, and the `free switch timer` expires again after 1000ms (a switch exactly 1000ms later is a free switch).
 
 - If a switch is to melee or throwables, the `effective switch delay` is zero.
-- Otherwise, if a switch is a **free switch** and the new weapon's `deploy group` is not that of the old weapon, the `effective switch delay` is 250ms.
+- Otherwise, if a switch is a **free switch** and the new weapon's `deploy group` is not that of the old weapon, or no delay was restricting the old weapon from shooting, the `effective switch delay` is 250ms.
 - Otherwise, the `effective switch delay` is the `switch delay` of the weapon.
 
 A weapon cannot be fired until its `effective switch delay` has elapsed after the last switch. This is different from the old system, which considers the time of the *last shot* instead of the *last switch*.
 
 In other words,
-> A **free switch** is any weapon switch at least 1000ms after the last **free switch** (or the first switch). It allows the player to shoot the new gun after 250ms, unless the `deploy group`s of the old and new weapon are the same. If a switch is not a **free switch** (or the `deploy group`s match), then the original `switch delay` is applied.
+> A **free switch** is any weapon switch at least 1000ms after the last **free switch** (or the first switch). It allows the player to shoot the new gun after 250ms, unless the `deploy group`s of the old and new weapon are the same and the old weapon could shoot because of an active delay. If a switch is not a **free switch** (or the `deploy group`s match), then the original `switch delay` is applied.
 
 Melee and grenades always have zero `effective switch delay`. All other weapons have at least 250ms `switch delay`, so they either benefit from the `free switch` or are unaffected if their `switch delay` is already 250ms.
 
