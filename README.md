@@ -260,8 +260,8 @@ def tick_fragments(player):
             player.burst_time = now + weapon.burstDelay
     elif player.burst_remain and now >= burst_time:
         weap.shoot()
-        if (player.burst_remain -= 1) != 0:
-            player.burst_time = now + weapon.burstDelay
+        player.burst_remain -= 1
+        player.burst_time = now + weapon.burstDelay
 
     # switch weapon
     if player.cur_weap != player.prev_weap:
@@ -299,8 +299,8 @@ def tick_fragments():
         player.slow_timer = player.fire_timer = weap.fireDelay
     elif player.burst_remain and player.burst_timer <= 0:
         weap.shoot()
-        if (player.burst_remain -= 1) != 0:
-            player.burst_timer = weapon.burstDelay
+        player.burst_remain -= 1
+        player.burst_timer = weapon.burstDelay
 
     # switch weapon (NEW)
     if player.cur_weap != player.prev_weap:
