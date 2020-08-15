@@ -250,14 +250,14 @@ def tick_fragments(player):
     def weap_shoot():
         # (shoot weap)
         player.burst_remain -= 1
-        player.burst_time = now + weapon.burstDelay
+        player.burst_time = now + weap.burstDelay
 
-    delay = weap['switchDelay' if weap.switched else 'fireDelay']
+    delay = weap.switchDelay if weap.switched else weap.fireDelay
     if player.shooting and now - weap.last_shot_time >= delay:
         weap.switched = False
         weap.last_shot_time = now
         player.slow_until = now + weap.fireDelay
-        weap.burst_remain = weapon.burstCount or 1
+        weap.burst_remain = weap.burstCount or 1
         weap_shoot()
     elif player.burst_remain and now >= burst_time:
         weap_shoot()
@@ -295,7 +295,7 @@ def tick_fragments():
         player.burst_time = weap.burstDelay
 
     if player.shooting and player.fire_timer <= 0:
-        weapon.burst_remain = weapon.burstCount or 1
+        weap.burst_remain = weap.burstCount or 1
         player.slow_timer = player.fire_timer = weap.fireDelay
         weap_shoot()
     elif player.burst_remain and player.burst_timer <= 0:
