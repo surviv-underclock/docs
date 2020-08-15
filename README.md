@@ -265,9 +265,11 @@ def tick_fragments(player):
 
     # switch weapon
     if player.cur_weap != player.prev_weap:
-        weap.switched = True
-        player.slow_until = 0
         player.burst_remain = 0
+
+        if not swapping_with_t:
+            weap.switched = True
+            player.slow_until = 0
 
     # moving
     if player.slow_until > now:
@@ -301,24 +303,26 @@ def tick_fragments():
             player.burst_timer = weapon.burstDelay
 
     # switch weapon (NEW)
-    if player.cur_weap != player.prev_weap: # excludes swap with T
-        old_weap = player.weapons[player.prev_weap]
-
-        effective_switch_delay = weap.switchDelay
-        if player.cur_weap in (W_MELEE, W_THROWABLE):
-            effective_switch_delay = 0
-        elif player.free_switch_timer <= 0 and not (
-            weap.deployGroup == old_weap.deployGroup
-            and weap.deployGroup is not undefined
-            and player.fire_timer > 0):
-                effective_switch_delay = FREE_SWITCH_DELAY
-
-        if player.free_switch_timer <= 0:
-            player.free_switch_timer = FREE_SWITCH_COOLDOWN
-
-        player.fire_timer = effective_switch_delay
-        player.slow_timer = 0
+    if player.cur_weap != player.prev_weap:
         player.burst_remain = 0
+
+        if not swapping_with_t:
+            old_weap = player.weapons[player.prev_weap]
+
+            effective_switch_delay = weap.switchDelay
+            if player.cur_weap in (W_MELEE, W_THROWABLE):
+                effective_switch_delay = 0
+            elif player.free_switch_timer <= 0 and not (
+                weap.deployGroup == old_weap.deployGroup
+                and weap.deployGroup is not undefined
+                and player.fire_timer > 0):
+                    effective_switch_delay = FREE_SWITCH_DELAY
+
+            if player.free_switch_timer <= 0:
+                player.free_switch_timer = FREE_SWITCH_COOLDOWN
+
+            player.fire_timer = effective_switch_delay
+            player.slow_timer = 0
 
     # moving
     if player.slow_timer >= 0:
@@ -333,7 +337,7 @@ def tick_fragments():
         player.fire_timer = weap.fireDelay
 
     if player.cur_weap != player.prev_weap:
-        if swapping: # default keybind T
+        if swapping_with_t:
             player.free_switch_timer = 0
 
         sound = weap.sound.deploy
