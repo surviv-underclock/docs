@@ -384,6 +384,47 @@ def tick_fragments():
             player.fire_timer = 0
 ```
 
+### Formal Math
+- `IF(a, b, c) ≝ b if a else c` (for scalar b and c).
+- `IF(a, b, c) ≝ a∧b ∨ ¬a∧c` (for boolean b and c).
+- `IF(c1, v1, c2, v2, e) ≝ IF(c1, v1, IF(c2, v2, e))`.
+- Let `s(w)` be the switch delay of weapon `w`.
+- Let `f(w)` be the fire delay of weapon `w`.
+- Let `mt(w)` be the truth value of (`w` is a melee or throwable weapon).
+- Let `C(w,t)` be (the weapon `w` can fire at time `t` if it is equipped). We will define this in terms of everything else.
+- Let `F(w,t)` be (the weapon `w` is actually firing at time `t`).
+- Let `S(a, b, t)` represent whether weapon `a` is switched to weapon `b` at time `t`.
+- Let `max(x, P(x))` be the maximal `x` such that `P(x) ∨ x=-∞`.
+- `MF(w, t) ≝ max(t', t'≤t ∧ F(w,t'))`.
+- `MS(b, t) ≝ max(t', t'≤t ∧ ∃a S(a,b,t'))`.
+- `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether w was fired only before the last switch, until t)
+
+#### Old System
+`C(w, t) ≝ ¬∃u(F(w, t-u) ∧ 0≤u<IF(LS(w,t), s(w), f(w))).`
+
+*You can't shoot until `effective delay` after your last shot, which is the `fire delay` until you switch weapons, which makes it become the `switch delay`. You can shoot if you didn't shoot before.*
+
+#### New System
+- Let `FSD` be the free switch delay = 250ms.
+- Let `FST` be the free switch timer = 1000ms.
+- Let `d(w)` be the deploy group of weapon `w`. Let `ND` be "no deploy group".
+- `DD(a,b) ≝ d(a)≠d(b) ∨ d(a)=ND ∨ d(b)=ND` (different deploy groups).
+- `FS(a, b, t) ≝ S(a, b, t) ∧ (¬∃a∃b∃u t-FST≤u≤t ∧ FS(a, b, u))` (free switch from `a` to `b` at time `t`).
+- `ESD(w, t) ≝ IF(mt(w), 0, ∃x (FS(x,w,MS(w,t)) ∧ DD(x, w)), FSD, s(w))` (effective switch delay).
+- `C(w, t) ≝ IF(LS(w, t), t ≥ MF(w,t) + f(w), t ≥ MS(w,t) + ESD(w, t)).`
+
+*You can't shoot until the `fire delay` has passed, or if you switched weapons, until `effective switch delay` has passed.*
+
+#### Math notes
+Note that `max(a, P(a)) ≤ max(a, Q(a))` can be rewritten as `¬∃a∃b(a>b ∧ P(a) ∧ Q(b) ∧ ¬∃c(P(c) ∧ c>a) ∧ ¬∃c(Q(c) ∧ c>b))`; similarly, `max(a, P(a)) ≤ b` is `¬∃a(a>b ∧ P(a))`.
+
+Expanding to remove the use of `max` is an exercise for the reader. The form with `max` is more concise.
+
+It is also possible to rewrite `t ≤ IF(a, b, c, d, e)` as `IF(a, t≤b, c, t≤d, t≤e)` and then expand the `IF`, but that would just be really verbose and repetitive.
+
+#### Practical notes
+Writing all of this out is tricky, and some parts might contain errors.
+
 ## Glossary
 - **Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
 - **Overclock**: switching weapons to increase DPS (doesn't actually exist except for throwables, and attempts usually result in underclock for guns and melee)
