@@ -385,8 +385,8 @@ def tick_fragments():
 ```
 
 ### Formal Math
-- `IF(a, b, c) ≝ b if a else c` (for scalar b and c).
-- `IF(a, b, c) ≝ a∧b ∨ ¬a∧c` (for boolean b and c).
+- `IF(a, b, c) ≝ b if a else c` (for scalar `b` and `c`).
+- `IF(a, b, c) ≝ a∧b ∨ ¬a∧c` (for boolean `b` and `c`).
 - `IF(c1, v1, c2, v2, e) ≝ IF(c1, v1, IF(c2, v2, e))`.
 - Let `s(w)` be the switch delay of weapon `w`.
 - Let `f(w)` be the fire delay of weapon `w`.
