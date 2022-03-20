@@ -236,8 +236,29 @@ The `client free switch timer` is very similar, and it affects the weapon deploy
 - get skilled at timing
 - use macros
 
-#### Pseudocode (Python-like)
-##### Old System
+### Corollaries
+Useful inferences are listed here.
+
+When using a free switch to shoot twice over 250ms, it is universal and works on any two weapons, regardless of deploy group:
+- different weapon types in both slots (1-2 or 2-1)
+- same weapon type but different slot (1-2 or 2-1)
+- identical weapon in either slot (1-1 or 2-2)
+
+When a free switch is available, using it to switch to a different deploy group is easy by switching directly to the other weapon.
+
+To avoid switching to the same deploy group, it is necessary to switch to melee/throwables before the free switch, and then free switch to the new weapon.
+
+Burst weapons can also be used by having the burst end before switching to melee. Alternatively, to satisfy noslow constraints, bursts can be canceled by swapping weapon slots (default keybind is T).
+
+Melee and Throwables are already explained in #timers
+
+Legacy terms
+- "hard overclock" is just using free switch to shoot twice over 250ms.
+- "soft overclock" is just shooting slowly but also using free switch.
+There is no real distinction between "hard overclock" and "soft overclock", but "soft overclock" is usually the result of either a failed attempt at "hard overclock" or spacing shots to minimize spacing between shots.
+
+### Pseudocode (Python-like)
+#### Old System
 ```py
 # initial values
 weap.switched = False
@@ -277,7 +298,7 @@ def tick_fragments(player):
     if player.slow_until > now:
         move_speed *= weap.move_speed_multiplier
 ```
-##### New System
+#### New System
 ```py
 FREE_SWITCH_DELAY = 250 # NEW
 FREE_SWITCH_COOLDOWN = 1000 # NEW
@@ -362,27 +383,6 @@ def tick_fragments():
             play_sound(sound)
             player.fire_timer = 0
 ```
-
-### Corollaries
-Useful inferences are listed here.
-
-When using a free switch to shoot twice over 250ms, it is universal and works on any two weapons, regardless of deploy group:
-- different weapon types in both slots (1-2 or 2-1)
-- same weapon type but different slot (1-2 or 2-1)
-- identical weapon in either slot (1-1 or 2-2)
-
-When a free switch is available, using it to switch to a different deploy group is easy by switching directly to the other weapon.
-
-To avoid switching to the same deploy group, it is necessary to switch to melee/throwables before the free switch, and then free switch to the new weapon.
-
-Burst weapons can also be used by having the burst end before switching to melee. Alternatively, to satisfy noslow constraints, bursts can be canceled by swapping weapon slots (default keybind is T).
-
-Melee and Throwables are already explained in #timers
-
-Legacy terms
-- "hard overclock" is just using free switch to shoot twice over 250ms.
-- "soft overclock" is just shooting slowly but also using free switch.
-There is no real distinction between "hard overclock" and "soft overclock", but "soft overclock" is usually the result of either a failed attempt at "hard overclock" or spacing shots to minimize spacing between shots.
 
 ## Glossary
 - **Underclock**: sacrificing shots to delay other shots (trade DPS for improved unpredictability), usually to noslow two weapons in rapid succession with a free switch
