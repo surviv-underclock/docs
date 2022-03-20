@@ -397,7 +397,7 @@ def tick_fragments():
 - Let `max(x, P(x))` be the maximal `x` such that `P(x) ∨ x=-∞`.
 - `MF(w, t) ≝ max(t', t'≤t ∧ F(w,t'))`.
 - `MS(b, t) ≝ max(t', t'≤t ∧ ∃a S(a,b,t'))`.
-- `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether w was fired only before the last switch, until t)
+- `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether `w` was fired only before the last switch, until `t`)
 
 #### Old System
 `C(w, t) ≝ ¬∃u(F(w, t-u) ∧ 0≤u<IF(LS(w,t), s(w), f(w))).`
