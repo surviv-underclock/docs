@@ -3,10 +3,13 @@
 This guide explains how to underclock ("overclock") in surviv.io.
 
 ## Table of Contents
-* [Instructions](#instructions) (how to underclock + advanced instructions requiring more math)
+* [Instructions](#instructions) (how to underclock)
+  * [Advanced](#advanced) (advanced instructions with more math)
 * [Notation](#notation) (how to understand [#instructions](#instructions))
 * [Timers](#timers) (why underclock works)
+  * [Corollaries](#corollaries) (useful inferences about the new timer system)
 * [Glossary](#glossary) (some useful keywords)
+* [Credits](#credits) (nobody cares)
 * [Videos](#videos) (watch [#instructions](#instructions) in action)
 * [No Overclock](#no-overclock) ("There is no overclock!")
 
