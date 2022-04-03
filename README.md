@@ -8,6 +8,8 @@ This guide explains how to underclock ("overclock") in surviv.io.
 * [Notation](#notation) (how to understand [#instructions](#instructions))
 * [Timers](#timers) (why underclock works)
   * [Corollaries](#corollaries) (useful inferences about the new timer system)
+  * [Pseudocode](#pseudocode)
+  * [Formal Math](#formal-math)
 * [Glossary](#glossary) (some useful keywords)
 * [Credits](#credits) (nobody cares)
 * [Videos](#videos) (watch [#instructions](#instructions) in action)
@@ -257,7 +259,9 @@ Legacy terms
 - "soft overclock" is just shooting slowly but also using free switch.
 There is no real distinction between "hard overclock" and "soft overclock", but "soft overclock" is usually the result of either a failed attempt at "hard overclock" or spacing shots to minimize spacing between shots.
 
-### Pseudocode (Python-like)
+### Pseudocode
+Pseudocode (Python-like)
+
 #### Old System
 ```py
 # initial values
