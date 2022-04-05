@@ -159,14 +159,11 @@ sequence = *space 1*(instruction *space)
 instruction = label / shoot / shoot-start / shoot-end / switch
                 / equip-1 / equip-2 / equip-3 / equip-4
 
-space = SP / CR / LF
-
 ; label indicates a wait until a certain time
 label = label-delay ":"
 label-delay = label-delay-absolute / label-delay-relative
 label-delay-absolute = number ; in ms since the beginning
 label-delay-relative = "+" number ; in ms since the last label
-number = *DIGIT / *DIGIT "." *DIGIT
 
 ; all following instructions are executed immediately after each other
 
@@ -181,6 +178,13 @@ equip-1 = "a" / "A" ; equip primary
 equip-2 = "b" / "B" ; equip secondary
 equip-3 = "c" / "C" ; equip melee
 equip-4 = "d" / "D" ; equip throwables
+
+; helper definitions
+space = SP / CR / LF
+digit1-9 = %x31-39 ; 1-9
+int = "0" / digit1-9 *DIGIT
+frac = "." 1*DIGIT
+number = int / [int] "." frac
 ```
 This defines a language that compactly describes a sequence of timed actions that could be converted to a macro and executed.
 
