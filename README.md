@@ -401,8 +401,8 @@ def tick_fragments():
 - Let `s(w)` be the switch delay of weapon `w`.
 - Let `f(w)` be the fire delay of weapon `w`.
 - Let `mt(w)` be the truth value of (`w` is a melee or throwable weapon).
-- Let `C(w,t)` be (the weapon `w` can fire at time `t` if `E(w,t)`). We will define this in terms of everything else.
-- Let `F(w,t)` be (the weapon `w` is actually firing at time `t`).
+- Let `C(w, t)` be (the weapon `w` can fire at time `t`). We will define this in terms of everything else.
+- Let `F(w, t)` be (the weapon `w` is actually firing at time `t`).
 - Let `S(a, b, t)` represent whether weapon `a` is switched to a different weapon `b` at time `t`.
 - Let `max(x, P(x))` be the maximal `x` such that `P(x) ∨ x=-∞`.
 - `MF(w, t) ≝ max(t', t'≤t ∧ F(w,t'))`.
@@ -412,7 +412,7 @@ def tick_fragments():
   - Two events never occur at the same time, so `LS(w, t) ≝ MF(w,t) < MS(w,t)` is an equivalent definition.
 
 #### Old System
-`C(w, t) ≝ ¬∃u(F(w, t-u) ∧ 0≤u<IF(LS(w,t), s(w), f(w))).`
+`C(w, t) ≝ E(w, t) ∧ ¬∃u(F(w, t-u) ∧ 0≤u<IF(LS(w,t), s(w), f(w))).`
 
 *You can't shoot until `effective delay` after your last shot, which is the `fire delay` until you switch weapons, which makes it become the `switch delay`. You can shoot if you didn't shoot before.*
 
@@ -423,7 +423,7 @@ def tick_fragments():
 - `DD(a,b) ≝ d(a)≠d(b) ∨ d(a)=ND ∨ d(b)=ND` (different deploy groups).
 - `FS(a, b, t) ≝ S(a, b, t) ∧ ¬∃c∃d∃u (t-FST≤u<t ∧ FS(c, d, u))` (free switch from `a` to `b` at time `t`).
 - `ESD(w, t) ≝ IF(mt(w), 0, ∃x (FS(x,w,MS(w,t)) ∧ DD(x, w)), FSD, s(w))` (effective switch delay).
-- `C(w, t) ≝ t ≥ IF(LS(w, t), MF(w,t) + f(w), MS(w,t) + ESD(w, t)).`
+- `C(w, t) ≝ E(w, t) ∧ t ≥ IF(LS(w, t), MF(w,t) + f(w), MS(w,t) + ESD(w, t)).`
 
 *You can't shoot until the `fire delay` has passed, or if you switched weapons, until `effective switch delay` has passed.*
 
