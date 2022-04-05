@@ -172,7 +172,7 @@ shoot-end = ">" ; shoot key up (default is mouse up)
 
 ; press key and release immediately
 shoot = "!"
-switch = %x5c ; "\" switch gun slots (default keybind is T)
+switch = %x5C ; "\" switch gun slots (default keybind is T)
 ; use uppercase to denote free switches
 equip-1 = "a" / "A" ; equip primary
 equip-2 = "b" / "B" ; equip secondary
