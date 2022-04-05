@@ -226,7 +226,7 @@ The above applies to the `server free switch timer`, which determines when you c
 
 The `client free switch timer` is very similar, and it affects the weapon deploy sound. There are notable differences:
 
-- When a server free switch is wasted by switching to melee/throwables, server-side, the timer does not start, so only switches to gun (primary or secondary) can be a client free switch.
+- When a server free switch is wasted by switching to melee/throwables, server-side, the timer does not start, so only switches to a gun (primary or secondary) can be a client free switch.
 - When swapping gun slots (default keybind is T), the client free switch timer resets to zero, allowing the next switch to be a client free switch.
 - If a gun is equipped, a sound plays. If it is a client free switch, the free switch sound plays, and the client free switch timer is set to 1000ms. Otherwise, the deploy sound plays. It is a free switch when the client free switch timer has expired and any of these is true: the previous weapon was not a gun, primary and secondary do not have the same deploy group, or the fire delay timer has expired.
 - If melee is equipped, the switch is never a free switch, and the deploy sound always plays.
