@@ -2,7 +2,7 @@
 
 This guide explains how to underclock ("overclock") in surviv.io.
 
-_Estimated reading time: 22,678 hours_
+_Estimated reading time: 22,525 hours_
 
 ## Table of Contents
 * [Instructions](#instructions) (how to underclock)
