@@ -2,7 +2,7 @@
 
 This guide explains how to underclock ("overclock") in surviv.io.
 
-_Estimated reading time: 22,525 hours_
+_Estimated reading time: 22,497 hours_
 
 ## Table of Contents
 * [Instructions](#instructions) (how to underclock)
@@ -409,7 +409,7 @@ def tick_fragments():
 - Let `max(x, P(x))` be the maximal `x` such that `P(x) ∨ x=-∞`.
 - `MF(w, t) ≝ max(t', t'≤t ∧ F(w,t'))`.
 - `MS(b, t) ≝ max(t', t'≤t ∧ ∃a S(a,b,t'))`.
-- `E(w, t) ≝ IF(∃a∃b∃u S(a,b,u), ∃u (u≤t ∧ ∃a S(a,w,u) ∧ ¬∃v (u<v≤t ∧  ∃b S(w,b,v))), w = melee)` (`w` is equipped at time `t`).
+- `E(w, t) ≝ IF(∃a∃b∃u S(a,b,u), ¬∃v MS(v, t) > MS(w, t), w = melee)` (`w` is equipped at time `t`).
 - `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether `w` was fired only before the last switch, until `t`).
   - Two events never occur at the same time, so `LS(w, t) ≝ MF(w,t) < MS(w,t)` is an equivalent definition.
 
