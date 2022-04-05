@@ -401,13 +401,14 @@ def tick_fragments():
 - Let `s(w)` be the switch delay of weapon `w`.
 - Let `f(w)` be the fire delay of weapon `w`.
 - Let `mt(w)` be the truth value of (`w` is a melee or throwable weapon).
-- Let `C(w,t)` be (the weapon `w` can fire at time `t` if it is equipped). We will define this in terms of everything else.
+- Let `C(w,t)` be (the weapon `w` can fire at time `t` if `E(w,t)`). We will define this in terms of everything else.
 - Let `F(w,t)` be (the weapon `w` is actually firing at time `t`).
-- Let `S(a, b, t)` represent whether weapon `a` is switched to weapon `b` at time `t`.
+- Let `S(a, b, t)` represent whether weapon `a` is switched to a different weapon `b` at time `t`.
 - Let `max(x, P(x))` be the maximal `x` such that `P(x) ∨ x=-∞`.
 - `MF(w, t) ≝ max(t', t'≤t ∧ F(w,t'))`.
 - `MS(b, t) ≝ max(t', t'≤t ∧ ∃a S(a,b,t'))`.
-- `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether `w` was fired only before the last switch, until `t`)
+- `E(w, t) ≝ IF(∃a∃b∃u S(a,b,u), ∃u (u≤t ∧ ∃a S(a,w,u) ∧ ¬∃v (u<v≤t ∧  ∃b S(w,b,v))), w = melee)` (`w` is equipped at time `t`).
+- `LS(w, t) ≝ MF(w,t) ≤ MS(w,t)` (whether `w` was fired only before the last switch, until `t`).
   - Two events never occur at the same time, so `LS(w, t) ≝ MF(w,t) < MS(w,t)` is an equivalent definition.
 
 #### Old System
