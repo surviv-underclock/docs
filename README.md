@@ -423,7 +423,7 @@ def tick_fragments():
 - Let `FST` be the free switch timer = 1000ms.
 - Let `d(w)` be the deploy group of weapon `w`. Let `ND` be "no deploy group".
 - `DD(a,b) ≝ d(a)≠d(b) ∨ d(a)=ND ∨ d(b)=ND` (different deploy groups).
-- `FS(a, b, t) ≝ S(a, b, t) ∧ ¬∃c∃d∃u (t-FST≤u<t ∧ FS(c, d, u))` (free switch from `a` to `b` at time `t`).
+- `FS(a, b, t) ≝ S(a, b, t) ∧ ¬∃c∃d∃u (t-FST<u<t ∧ FS(c, d, u))` (free switch from `a` to `b` at time `t`).
 - `ESD(w, t) ≝ IF(mt(w), 0, ∃x (FS(x,w,MS(w,t)) ∧ (DD(x, w) ∨ t ≥ MF(x,t) + f(x))), FSD, s(w))` (effective switch delay).
 - `C(w, t) ≝ E(w, t) ∧ t ≥ IF(LS(w, t), MF(w,t) + f(w), MS(w,t) + ESD(w, t)).`
 
